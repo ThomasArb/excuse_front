@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components'
+import Button from './Button'
+import { getExcusesQuery } from './data/selectors/query/getExcuses.query'
+import { useRecoilValue } from 'recoil'
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+`
+
+const SubContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 25px;
+  background: lightgrey;
+  border: 1px solid blue;
+`
+
+const Title = styled.h3`
+`
+
+const Sentence = styled.p``
 
 function App() {
+  const excuse = useRecoilValue(getExcusesQuery)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="App">
+      <SubContainer>
+        <Title>Excuses De Dev</Title>
+        <Sentence>{excuse.http_code}</Sentence>
+        <Sentence>{excuse.tag}</Sentence>
+        <Sentence>{excuse.message}</Sentence>
+        <Button url={'random'}/>
+      </SubContainer>
+    </Container>
   );
 }
 

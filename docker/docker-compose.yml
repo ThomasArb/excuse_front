@@ -1,0 +1,14 @@
+services:
+  backend:
+    container_name: excuses_front
+    build:
+      context: ./..
+      dockerfile: ./docker/Dockerfile
+    working_dir: /os/app
+    environment:
+      - NODE_ENV=dev
+    volumes:
+      - ../src:/os/app/src
+      - ../public:/os/app/public
+    ports:
+      - "8888:3000"
